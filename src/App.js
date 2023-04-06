@@ -1,9 +1,15 @@
 import React from 'react';
 
 const App = () => {
-  const produtos = ['Notebook', 'Smartphone', 'Tablet'];
+  const filmes = ['Before Sunrise', 'Before Sunset', 'Before Midnight'];
 
-  return <p>{produtos}</p>;
+  return (
+    <ul>
+      {filmes.map((filme) => (
+        <li key={filme}>{filme}</li>
+      ))}
+    </ul>
+  );
 };
 
 
