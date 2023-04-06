@@ -1,15 +1,29 @@
-const App = () => {
-  function handleClick(event) {
-    alert('Comprou: ' + event.target.innerText);
-  }
+import React from 'react';
+import Footer from './Footer';
+import Form from './form/Form';
+import Header from './Header';
 
+const Teste = () => {
+  const active = true;
+  if (active) {
+    return <p>Ativo</p>;
+  } else {
+    return null;
+  }
+};
+
+
+const App = () => {
   return (
-    <div>
-      <button onClick={handleClick} >Camisa</button>
-      <hr />
-      <button onClick={handleClick}>Bermuda</button>
-    </div>
+<React.Fragment>
+  <Teste />
+  <Header />
+  <Form />
+  <Footer />
+</React.Fragment>
   );
 };
 
 export default App;
+
+// snippets rafce
