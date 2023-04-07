@@ -1,28 +1,18 @@
 import React from 'react';
-import Footer from './Footer';
-import Form from './form/Form';
-import Header from './Header';
 
-const Teste = () => {
-  const active = true;
-  if (active) {
-    return <p>Ativo</p>;
-  } else {
-    return null;
-  }
-};
-
+const Titulo = (props) => {
+  // const Titulo = ({cor, texto}) => { assim seria desestruturado
+  //return <h1 style={{color: cor}}>{texto}</h1>
+  return <h1 style={{color: props.cor}}>{props.texto}</h1>
+}
 
 const App = () => {
-  return (
-<React.Fragment>
-  <Teste />
-  <Header />
-  <Form />
-  <Footer />
-</React.Fragment>
-  );
-};
+  return <div>
+    <Titulo cor="red" texto='Meu título 1'/>
+    <Titulo cor="blue" texto='Meu título 1'/>
+    <Titulo texto='Meu título 1'/>
+  </div>;
+}
 
 export default App;
 
