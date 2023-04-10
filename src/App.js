@@ -1,33 +1,38 @@
 import React from 'react';
-import Header from './DesafioC/Header';
-import Home from './DesafioC/Home';
-import Produtos from './DesafioC/Produtos';
+import Produto from './Produto';
 
-// Replique a interface como a apresentada na aula
-// Utilize a array abaixo para mostrar os produtos
-// Quebre em componentes o que precisar ser reutilizado
-// Dica: const { pathname } = window.location; (puxa o caminho do URL)
-
-
+// Os links abaixo puxam dados de um produto em formato JSON
+// https://ranekapi.origamid.dev/json/api/produto/tablet
+// https://ranekapi.origamid.dev/json/api/produto/smartphone
+// https://ranekapi.origamid.dev/json/api/produto/notebook
+// Crie uma interface com 3 botões, um para cada produto.
+// Ao clicar no botão faça um fetch a api e mostre os dados do produto na tela.
+// Mostre apenas um produto por vez
+// Mostre a mensagem carregando... enquanto o fetch é realizado
 
 const App = () => {
-  
-  const {pathname} = window.location;
+  const [dados, setDados] = React.useState(null);
+  const [carregando, setCarregando] = React.useState(null);
 
-  let Pagina;
-  if(pathname === '/produtos'){
-    Pagina = Produtos
-  } else {
-    Pagina = Home
+  async function handleClick(event) {
+    setCarregando(true);
+    const response = await fetch(
+      `https://ranekapi.origamid.dev/json/api/produto/${event.target.innerText}`,
+    );
+    const json = await response.json();
+    setDados(json);
+    setCarregando(false);
   }
+
   return (
-  <section>
-    <Header />
-    <Pagina />
-  </section>
-  );
-};
+    <>
+    <button onClick={handleClick}>smartphone</button>
+    <button onClick={handleClick}>tablet</button>
+    <button onClick={handleClick}>notebook</button>
+    {carregando && <p>Carregando...</p>}
+    {!carregando && dados && <Produto dados={dados}/>}
+    </>
+  )
+}
 
 export default App;
-
-// snippets rafce
